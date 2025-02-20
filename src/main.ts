@@ -1,29 +1,30 @@
 import { Hono } from "hono";
-
+import { serveStatic } from "hono/deno";
+//
+import { Layout } from "./components/layout.ts";
+// * end imports
+//
+// ! app
 const app = new Hono();
 
-app.use(async (_, next) => {
-  console.log("middleware 1 start");
-  await next();
-  console.log("middleware 1 end");
-});
-app.use(async (_, next) => {
-  console.log("middleware 2 start");
-  await next();
-  console.log("middleware 2 end");
-});
+// middleware
 
-app.use(async (_, next) => {
-  console.log("middleware 3 start");
-  await next();
-  console.log("middleware 3 end");
-});
+app.use("/static/*", serveStatic({ root: "./" })); // for styles, scripts, images, etc
 
+// route handlers
 app.get("/", (c) => {
-  console.log("handler");
-  return c.html(`
-	<h1>Ok, working now ???? </h1>
-  `);
+  return c.html(Layout());
+});
+
+/**
+ **
+import { HomePage } from "./components/homePage.ts";
+**
+app.get("/home", (c) => c.html(HomePage()));
+ */
+
+app.get("/testing", (c) => {
+  return c.text("you are testing ");
 });
 
 Deno.serve(app.fetch);
