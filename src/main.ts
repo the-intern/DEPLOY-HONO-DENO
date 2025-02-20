@@ -13,15 +13,17 @@ app.use(async (_, next) => {
   console.log("middleware 2 end");
 });
 
-app.get("/", (c) => {
-  console.log("handler");
-  return c.text("Hello!");
-});
-
 app.use(async (_, next) => {
   console.log("middleware 3 start");
   await next();
   console.log("middleware 3 end");
+});
+
+app.get("/", (c) => {
+  console.log("handler");
+  return c.html(`
+	<h1>Ok, working now ???? </h1>
+  `);
 });
 
 Deno.serve(app.fetch);
