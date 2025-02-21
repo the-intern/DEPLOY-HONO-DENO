@@ -1,19 +1,23 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/deno";
-//
-import { Layout } from "./components/layout.ts";
-// * end imports
-//
-// ! app
+import { PoemPage } from "./components/poemPage.ts";
+
+// ***************** end imports
+// const data = Deno.readTextFileSync("./html-pages/index.html");
+
+// ----------------------------
+// app
+// ----------------------------
 const app = new Hono();
 
+// ----------------------------
 // middleware
-
+// ----------------------------
 app.use("/static/*", serveStatic({ root: "./" })); // for styles, scripts, images, etc
 
 // route handlers
 app.get("/", (c) => {
-  return c.html(Layout());
+  return c.html(PoemPage());
 });
 
 /**

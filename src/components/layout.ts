@@ -1,4 +1,5 @@
 import { html } from "hono/html";
+import { Button } from "./button.ts";
 
 export const Layout = function () {
   return html`
@@ -13,6 +14,8 @@ export const Layout = function () {
       </head>
       <body>
         <h1>Testing 03</h1>
+        ${Button()}
+        <script type="module" src="/static/scripts/main.js"></script>
       </body>
     </html>
   `;

@@ -1,5 +1,5 @@
 {
   "deno.enablePaths": ["./"],
   "editor.inlayHints.enabled": "off",
-  "workbench.colorTheme": "Material Theme Palenight High Contrast"
+  "deno.enable": true
 }
