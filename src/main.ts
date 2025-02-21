@@ -4,7 +4,7 @@ import { PoemPage } from "./components/poemPage.ts";
 
 const app = new Hono();
 
-app.use("/static/*", serveStatic({ root: "./src" }));
+app.use("/static/*", serveStatic({ root: "./" }));
 
 app.get("/", (c) => {
   return c.html(PoemPage());
